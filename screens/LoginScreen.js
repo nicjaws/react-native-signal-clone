@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import { KeyboardAvoidingView } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import {Button, Input, Image} from 'react-native-elements';
+import { StatusBar } from 'expo-status-bar';
+import { KeyboardAvoidingView } from 'react-native';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <KeyboardAvoidingView behaviour='padding' enabled style={styles.container}>
+    <KeyboardAvoidingView behavior='padding'  style={styles.container}>
+      <StatusBar style='light'/>
       <Image 
         source={{
         uri: "https://blog.mozilla.org/internetcitizen/files/2018/08/signal-logo.png"
       }}
         style={{width: 200, height: 200}}
       />
-      <View>
+      <View style={styles.inputContainer}>
         <Input placeholder='Email' autoFocus type='email'
         value={email}
         onChangeText={(text) => setEmail(text)}
@@ -29,7 +31,10 @@ const LoginScreen = () => {
       <Button  containerStyle={styles.button} title='Login'/>
       <Button 
       containerStyle={styles.button}
-      title='Register' type='outline'/>
+      type='outline'
+      title='Register'/>
+      <View style={{ height: 100 }} />
+
     </KeyboardAvoidingView>
   )
 }
@@ -39,7 +44,13 @@ export default LoginScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+  },
+  inputContainer: {
+    width: 300,
   },
   button: {
     width: 200,
